@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -40,8 +40,8 @@ class BracketControllerTest {
                 .post(PATH)
         .then()
                 .statusCode(HttpStatus.OK.value())
-                .contentType(ContentType.TEXT)
-                .body(equalTo("A sequência de colchetes é válida."));
+                .contentType(ContentType.JSON)
+                .body("message", containsString("A sequência de colchetes é válida"));
     }
 
     @Test
@@ -58,8 +58,8 @@ class BracketControllerTest {
                 .post(PATH)
         .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
-                .contentType(ContentType.TEXT)
-                .body(equalTo("A sequência de colchetes não é válida."));
+                .contentType(ContentType.JSON)
+                .body("message", containsString("A sequência de colchetes não é válida"));
     }
 }
 

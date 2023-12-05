@@ -4,10 +4,10 @@
 - Java 17
 - Maven (3.6.3 ou posterior)
 - Spring Boot 3.1.4
-- Base de dados H2
+- Base de dados PostgreSQL
 - Lombok - Biblioteca focada em produtividade e redução de código boilerplate
-- Apache Tika - Validação binária de formatos de arquivos
 - Swagger
+- Render
 
 ## Funcionalidade
 API REST que valide se uma sequência de colchetes é balanceada. A
@@ -28,11 +28,11 @@ Exemplos:
 mvn spring-boot:run
 ```
 
-## H2 Database
+## PostgreSQL external Database
 ```sh
-http://localhost:8080/bracketsequence/h2-console/
+URL: jdbc:postgresql://dpg-clnpkcofvntc73b5s1t0-a.oregon-postgres.render.com/testdb_01a3
 username=sa
-password=password
+password=
 ```
 
 ## Testes
@@ -43,5 +43,5 @@ mvn test
 
 ## Swagger
 ```sh
-http://localhost:8080/bracketsequence/swagger-ui/index.html
+https://bracketsequence.onrender.com/bracketsequence/swagger-ui/index.html
 ```

@@ -3,7 +3,7 @@ document.getElementById('validateButton').addEventListener('click', validateBrac
 function validateBracketSequence() {
     var bracketSequence = document.getElementById('bracketSequence').value;
 
-    fetch('http://localhost:8080/bracketsequence/api/bracket/validate', {
+    fetch('https://bracketsequence.vercel.app/bracketsequence/api/bracket/validate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ function validateBracketSequence() {
             console.error('Resposta indefinida da API');
             return;
         }
-        
+
         // Manipular a resposta
         console.log(data);
 

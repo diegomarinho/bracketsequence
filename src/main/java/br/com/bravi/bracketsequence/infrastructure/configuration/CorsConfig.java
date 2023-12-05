@@ -14,18 +14,14 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-
-        // Liste as origens explicitamente
-        config.addAllowedOrigin("*"); // Permitir solicitações de qualquer origem. Substitua pelo seu domínio de frontend
-        // Adicione mais origens se necessário
-
+        config.addAllowedOrigin("http://localhost:8080");  // Permitir solicitações de qualquer origem
         config.addAllowedHeader("*");
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
         config.addAllowedMethod("DELETE");
-        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
 }

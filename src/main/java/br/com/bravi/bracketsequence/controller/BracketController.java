@@ -1,5 +1,6 @@
 package br.com.bravi.bracketsequence.controller;
 
+import br.com.bravi.bracketsequence.controller.response.ApiResponse;
 import br.com.bravi.bracketsequence.controller.swagger.ApiOperation;
 import br.com.bravi.bracketsequence.domain.dto.BracketSequenceDTO;
 import br.com.bravi.bracketsequence.infrastructure.commons.exception.MessageProvider;
@@ -30,13 +31,13 @@ public class BracketController {
             summary = "Validate or Save Bracket Sequence"
     )
     @PostMapping("/validate")
-    public ResponseEntity<String> validateBracketSequence(@RequestBody @Valid BracketSequenceDTO dto) {
+    public ResponseEntity<ApiResponse> validateBracketSequence(@RequestBody @Valid BracketSequenceDTO dto) {
         boolean isValid = bracketService.validateBracketSequence(dto.getSequence());
         if (isValid) {
             bracketService.saveBracketSequence(dto);
-            return ResponseEntity.ok(messageProvider.getMessage(MessagesEnum.BRACKET_RECORD_TYPE_VALID));
+            return ResponseEntity.ok(new ApiResponse("success", messageProvider.getMessage(MessagesEnum.BRACKET_RECORD_TYPE_VALID)));
         } else {
-            return ResponseEntity.badRequest().body(messageProvider.getMessage(MessagesEnum.BRACKET_RECORD_TYPE_INVALID));
+            return ResponseEntity.badRequest().body(new ApiResponse("error", messageProvider.getMessage(MessagesEnum.BRACKET_RECORD_TYPE_INVALID)));
         }
     }
 }

@@ -26,7 +26,7 @@ class BracketControllerTest {
     @LocalServerPort
     private int port;
 
-    //@Test
+    @Test
     public void testSaveBracketSequence_ValidSequence_ReturnsCreated() {
         RestAssured.baseURI = URL;
         RestAssured.port = port;
@@ -44,7 +44,7 @@ class BracketControllerTest {
                 .body("message", containsString("A sequência de colchetes é válida"));
     }
 
-    //@Test
+    @Test
     public void testSaveBracketSequence_InvalidSequence_ReturnsBadRequest0() {
         RestAssured.baseURI = URL;
         RestAssured.port = port;
